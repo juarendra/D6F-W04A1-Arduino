@@ -4,7 +4,7 @@
 
 Track **air velocity and temperature** concurrently • **Non-blocking RTOS-ready design** • **Industrial Omron Protocol** • [**Built for Aerodynamics**](https://github.com/juarendra/D6F-W04A1-Arduino)
 
-[![Build Status](https://github.com/juarendra/D6F-W04A1-Arduino/actions/workflows/build.yml/badge.svg)](https://github.com/juarendra/D6F-W04A1-Arduino/actions/workflows/build.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Community](https://img.shields.io/badge/github-juarendra-orange.svg?logo=github)](https://github.com/juarendra) [![Library Size](https://img.shields.io/badge/Size-Ultra%20Light-brightgreen.svg)]()
+[![Platform](https://img.shields.io/badge/Platform-Arduino-blue.svg)](https://www.arduino.cc/) [![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg)]() [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Community](https://img.shields.io/badge/github-juarendra-orange.svg?logo=github)](https://github.com/juarendra) [![Library Size](https://img.shields.io/badge/Size-Ultra%20Light-brightgreen.svg)]()
 
 ## ⚡ Get Flowing in 30 Seconds
 
