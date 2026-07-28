@@ -1,10 +1,10 @@
-# D6F-W04A1 - Advanced MEMS Air Flow Library
+# D6F-W04A1 - The Advanced Omron Airflow Engine
 
-****Precision wind and airflow tracking for your embedded systems.****
+****Precision wind and thermodynamic tracking for industrial embedded systems.****
 
-Track **air velocity and temperature** instantly • **Non-blocking RTOS-ready** • **Industrial Omron Support** • [**Built for Aerodynamics**](https://github.com/juarendra/D6F-W04A1-Arduino)
+Track **air velocity and temperature** concurrently • **Non-blocking RTOS-ready design** • **Industrial Omron Protocol** • [**Built for Aerodynamics**](https://github.com/juarendra/D6F-W04A1-Arduino)
 
-[![Build Status](https://github.com/juarendra/D6F-W04A1-Arduino/actions/workflows/build.yml/badge.svg)](https://github.com/juarendra/D6F-W04A1-Arduino/actions/workflows/build.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Community](https://img.shields.io/badge/github-juarendra-orange.svg?logo=github)](https://github.com/juarendra)
+[![Build Status](https://github.com/juarendra/D6F-W04A1-Arduino/actions/workflows/build.yml/badge.svg)](https://github.com/juarendra/D6F-W04A1-Arduino/actions/workflows/build.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Community](https://img.shields.io/badge/github-juarendra-orange.svg?logo=github)](https://github.com/juarendra) [![Library Size](https://img.shields.io/badge/Size-Ultra%20Light-brightgreen.svg)]()
 
 ## ⚡ Get Flowing in 30 Seconds
 
@@ -21,33 +21,63 @@ void setup() {
 
 void loop() {
   if (flowSensor.read()) {
+    Serial.print("Velocity: ");
     Serial.println(flowSensor.getFlow());
   }
 }
 ```
 
-**✅ Works on ESP32, RP2040, Teensy, Arduino, and 50+ other platforms**
+**✅ Fully compatible with Arduino, ESP32, Teensy, Raspberry Pi Pico, and 50+ other embedded platforms**
 
 ## Table of Contents
-- [⚡ Quick Start](#-get-flowing-in-30-seconds)
+- [⚡ Quick Start](#-get-sensing-in-30-seconds)
 - [🚀 Why This Library?](#-why-this-library)
+- [📚 Core API Reference](#-core-api-reference)
+- [🌍 Platform Compatibility](#-platform-compatibility)
 - [📦 Installation](#-installation)
 - [📄 License](#-license)
 
 ## 🚀 Why This Library?
 
-| **Zero Blocking** | **MEMS Sensor** | **Dual Metric** | **Universal** |
+| **Zero Blocking** | **MEMS Precision** | **Dual Metric** | **Universal** |
 |---|---|---|---|
-| Safe for complex IoT loops | Full Omron hardware support | Velocity & Temperature | Works on 50+ platforms |
+| Safe for complex IoT loops | Full Omron hardware parsing | Air Velocity & Temperature | Works on 50+ platforms |
 
-**🎯 Performance**: Zero-delay I2C communication • Lightweight data types.
-**🔧 Developer Experience**: Instant setup • Handles raw byte decoding seamlessly.
+**🎯 Performance**: Zero-delay I2C communication • Lightweight data structures.
+**🔧 Developer Experience**: Instant setup • Handles raw byte decoding and CRC checks invisibly.
+
+## 📚 Core API Reference
+
+- `void begin()`: Wakes up the I2C bus and verifies Omron sensor ID.
+- `bool read()`: Non-blocking request. Returns `true` when the payload is successfully captured and validated.
+- `float getFlow()`: Returns the calculated air velocity in m/s.
+- `float getTemperature()`: Returns the internal air temperature in Celsius.
+
+## 🌍 Platform Compatibility
+
+This library is engineered to be platform-agnostic. Below is the verified compatibility matrix:
+
+### 🟩 ESP32 Family (Espressif)
+- **ESP32 Classic** (WROOM/WROVER)
+- **ESP32-S2 / S3**
+- **ESP32-C3 / C6**
+
+### 🟦 Arduino Core & AVR
+- **Arduino Uno R3 / R4 Minima & WiFi**
+- **Arduino Mega 2560**
+- **Arduino Nano / Every / 33 IoT**
+- **ATtiny85 / ATmega32u4 (Leonardo/Pro Micro)**
+
+### 🟪 ARM & Advanced Cortex
+- **Teensy 4.0 / 4.1 / 3.2 / LC**
+- **Raspberry Pi Pico (RP2040 / RP2350)**
+- **STM32 (Bluepill / Blackpill)**
 
 ## 📦 Installation
 1. Download this repository as a `.zip` file.
 2. In the Arduino IDE, go to **Sketch > Include Library > Add .ZIP Library...**
 3. Select the downloaded `.zip` file.
-4. (Optional) Check the `examples/` directory for full usage.
+4. *(Optional) Check the `examples/` directory for full usage implementation.*
 
 ## 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
