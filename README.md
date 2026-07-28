@@ -46,6 +46,44 @@ void loop() {
 **🎯 Performance**: Zero-delay I2C communication • Lightweight data structures.
 **🔧 Developer Experience**: Instant setup • Handles raw byte decoding and CRC checks invisibly.
 
+## 💡 Advanced Usage Example
+
+```cpp
+// Advanced Usage: Industrial Airflow Monitoring & Alarms
+#include <D6F_W04A1.h>
+
+D6F_W04A1 flowSensor;
+
+void setup() { 
+  Serial.begin(115200);
+  Wire.begin();
+  
+  // Initialize the Omron MEMS Sensor
+  if(!flowSensor.begin()) {
+     Serial.println("Error: Omron sensor unresponsive.");
+  }
+}
+
+void loop() {
+  // read() ensures valid CRC and payload integrity before returning true
+  if (flowSensor.read()) {
+    float velocity = flowSensor.getFlow();
+    float temp = flowSensor.getTemperature();
+    
+    Serial.print("Wind Velocity: ");
+    Serial.print(velocity);
+    Serial.print(" m/s | Temp: ");
+    Serial.print(temp);
+    Serial.println(" °C");
+    
+    // Trigger alarm for extreme aerodynamic changes
+    if (velocity > 3.0) {
+      Serial.println("⚠️ ALARM: High Wind Velocity Detected!");
+    }
+  }
+}
+```
+
 ## 📚 Core API Reference
 
 - `void begin()`: Wakes up the I2C bus and verifies Omron sensor ID.
