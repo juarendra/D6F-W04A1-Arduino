@@ -19,6 +19,18 @@ public:
   float readSensorVoltage() const;
   float readFlowMetersPerSecond() const;
 
+  /** Return an averaged flow rate over N samples (software low-pass filter). */
+  float readFlowMetersPerSecondAveraged(uint8_t samples = 10) const;
+
+  /** Check if the sensor is physically connected and producing a valid baseline voltage (>0.5V). */
+  bool isConnected() const;
+
+  /** Set a calibration offset for the 1.0V baseline (zero-flow). */
+  void setZeroOffsetVolts(float offset);
+
+  /** Automatically calibrate the zero offset. Run only when the sensor is in completely still air. */
+  void calibrateZero(uint8_t samples = 20);
+
   /** Convert a D6F-W04A1 output voltage to air flow (m/s). */
   static float flowFromVoltage(float sensorVolts);
 
@@ -27,4 +39,5 @@ private:
   float _adcReferenceVolts;
   float _sensorVoltageScale;
   uint16_t _adcMaximum;
+  float _zeroOffsetVolts;
 };
