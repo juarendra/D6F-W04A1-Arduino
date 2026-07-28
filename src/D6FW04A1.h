@@ -19,6 +19,9 @@ public:
   float readSensorVoltage() const;
   float readFlowMetersPerSecond() const;
 
+  /** Convert flow velocity to volumetric flow rate (Liters per Minute) based on duct area. */
+  float readVolumetricFlowLitersPerMinute(float crossSectionalAreaCm2) const;
+
   /** Return an averaged flow rate over N samples (software low-pass filter). */
   float readFlowMetersPerSecondAveraged(uint8_t samples = 10) const;
 

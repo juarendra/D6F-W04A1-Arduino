@@ -30,6 +30,12 @@ float D6FW04A1::readFlowMetersPerSecond() const {
   return flowFromVoltage(readSensorVoltage());
 }
 
+float D6FW04A1::readVolumetricFlowLitersPerMinute(float crossSectionalAreaCm2) const {
+  float velocity = readFlowMetersPerSecond();
+  // Q (L/min) = v (m/s) * A (cm^2) * 6
+  return velocity * crossSectionalAreaCm2 * 6.0f;
+}
+
 float D6FW04A1::readFlowMetersPerSecondAveraged(uint8_t samples) const {
   if (samples == 0) samples = 1;
   float sum = 0.0f;
