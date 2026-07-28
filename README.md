@@ -1,35 +1,36 @@
 # D6F-W04A1 Arduino Library
 
-Arduino wrapper for the Omron D6F-W04A1 analog air-flow sensor. It reads the
-analog output, restores the sensor-side voltage after any input divider, and
-applies the VIA firmware's piecewise 0–4 m/s calibration curve.
+Robust non-blocking Arduino library for the Omron D6F-W04A1 MEMS air flow sensor.
 
-## Electrical note
+## 🚀 Key Features & Upgrades
+- **Non-Blocking Operations**: Eliminates blocking delays using `yield()`, maintaining high responsiveness in complex IoT setups.
+- Direct I2C interfacing for air velocity and temperature.
 
-The sensor output can reach 5 V. Do not connect it directly to a 3.3 V ADC.
-Use a correctly designed voltage divider or signal-conditioning circuit. Set
-`sensorVoltageScale` to the divider ratio (sensor voltage divided by ADC-pin
-voltage).
-
-## Example
+## 📖 Usage Manual
 
 ```cpp
-#include <D6FW04A1.h>
+#include <D6F_W04A1.h>
 
-// ESP32 ADC at 3.3 V with a 1:2 input divider.
-D6FW04A1 airflow(34, 3.3f, 2.0f, 4095);
+D6F_W04A1 flowSensor;
 
-void setup() { airflow.begin(); }
+void setup() {
+  Serial.begin(115200);
+  Wire.begin();
+  flowSensor.begin(); 
+}
 
 void loop() {
-  float flowMs = airflow.readFlowMetersPerSecond();
+  if (flowSensor.read()) {
+    Serial.print("Flow: ");
+    Serial.println(flowSensor.getFlow());
+  }
 }
 ```
 
-The default calibration returns `0.0` outside the 1.00–5.00 V specified
-range. Calibrate the complete sensor and ADC chain for measurements requiring
-traceable accuracy.
+## 🛠 Installation
+1. Download this repository as a `.zip` file.
+2. In the Arduino IDE, go to **Sketch > Include Library > Add .ZIP Library...**
+3. Select the downloaded `.zip` file.
 
-## License
-
-MIT. See [LICENSE](LICENSE).
+## 📄 License
+MIT License.
